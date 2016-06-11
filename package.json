@@ -14,9 +14,10 @@
   },
   "scripts": {
     "build": "NODE_ENV=production node node_modules/webpack/bin/webpack",
-    "lint": "exit 0",
-    "start": "node node_modules/webpack-dev-server/bin/webpack-dev-server",
-    "test": "exit 0"
+    "lint": "eslint src test --ext .js --ext .jsx",
+    "start": "webpack-dev-server",
+    "test": "NODE_PATH=$NODE_PATH:$PWD/src mocha $(find src -name '*.test.js')",
+    "coverage": "NODE_PATH=$NODE_PATH:$PWD/src babel-node ./node_modules/.bin/isparta cover _mocha -- $(find src -name '*.test.js')"
   },
   "devDependencies": {
     "babel-cli": "^6.9.0",
@@ -41,6 +42,7 @@
     "gulp": "^3.9.1",
     "gulp-stylint": "^3.0.0",
     "html-webpack-plugin": "2.19.0",
+    "isparta": "^4.0.0",
     "json-loader": "^0.5.4",
     "mocha": "^2.5.3",
     "postcss": "^5.0.21",

@@ -3,7 +3,6 @@ const USER_UPDATE_NAME = 'USER_UPDATE_NAME';
 export const updateName = (name) =>
     ({type: USER_UPDATE_NAME, name});
 
-
 const getDefaultState = () =>
     immutable({
         name: ''

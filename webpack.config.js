@@ -14,7 +14,7 @@ function extractStyle(loaders) {
 }
 
 let cssLoaders = 'style!css?localIdentName=[hash:base64]';
-let postcssLoaders = `${cssLoaders}!stylus`;
+let postcssLoaders = `${cssLoaders}!postcss-loader?parser=sugarss`;
 
 cssLoaders = extractStyle(cssLoaders);
 postcssLoaders = extractStyle(postcssLoaders);
