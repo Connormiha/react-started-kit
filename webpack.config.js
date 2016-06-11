@@ -2,6 +2,8 @@
 
 const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const autoprefixer = require('autoprefixer');
+const poststylus = require('poststylus');
 const NODE_ENV = process.env.NODE_ENV || 'development';
 const ExtractTextPlugin = require("extract-text-webpack-plugin");
 const path = require('path');
@@ -14,10 +16,10 @@ function extractStyle(loaders) {
 }
 
 let cssLoaders = 'style!css?localIdentName=[hash:base64]';
-let postcssLoaders = `${cssLoaders}!postcss-loader?parser=sugarss`;
+let stylusLoaders = `${cssLoaders}!stylus`;
 
 cssLoaders = extractStyle(cssLoaders);
-postcssLoaders = extractStyle(postcssLoaders);
+stylusLoaders = extractStyle(stylusLoaders);
 
 if (NODE_ENV === 'production') {
     PARAMS.watch = false;
@@ -53,13 +55,13 @@ module.exports = {
             {
                 test: /\.jsx?$/,
                 exclude: [nodePath],
-                loader: 'eslint-loader'
+                loader: 'eslint'
             }
         ],
         loaders: [
             {
                 test: /\.jsx?$/,
-                loader: 'babel-loader',
+                loader: 'babel',
                 exclude: [nodePath]
             },
             {
@@ -67,8 +69,8 @@ module.exports = {
                 loader: cssLoaders
             },
             {
-                test: /\.sss$/,
-                loader: postcssLoaders
+                test: /\.styl$/,
+                loader: stylusLoaders
             },
             {
                 test: /\.(png|svg|jpg|gif)$/,
@@ -80,11 +82,18 @@ module.exports = {
             }
         ],
     },
+    stylus: {
+        use: [
+            poststylus(autoprefixer({browsers: ['last 2 versions']}))
+        ]
+    },
+    //postcss: [postCssPreCss, autoprefixer({browsers: ['last 2 versions']})],
     //devtool: PARAMS.sourceMap,
     plugins: [
         new webpack.ProvidePlugin({
             React: 'react',
-            immutable: 'seamless-immutable'
+            immutable: 'seamless-immutable',
+            bem: 'bem-cn'
         }),
         new HtmlWebpackPlugin({
             template: './src/index.html',
@@ -95,7 +104,7 @@ module.exports = {
         new ExtractTextPlugin("app.[hash].css"),
         new webpack.DefinePlugin({
             'process.env': {
-                    'NODE_ENV': JSON.stringify(NODE_ENV)
+                'NODE_ENV': JSON.stringify(NODE_ENV)
             }
         })
     ],

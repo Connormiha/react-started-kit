@@ -229,6 +229,7 @@
         "React": false,
         "immutable": false,
         "DEBUG": false,
+        "bem": false,
         "beforeEach": true,
         "afterEach": true,
         "describe": true,

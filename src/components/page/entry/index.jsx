@@ -1,6 +1,10 @@
+const b = bem.default('entry');
+
 import {connect} from 'react-redux';
 import * as userActions from 'flux/user';
-import './index.sss';
+import WorkSheetForm from 'components/form/WorkSheet';
+import WorkSheetTable from 'components/common/WorkSheetTable';
+import './index.styl';
 
 @connect(
     ({user}) => ({user}),
@@ -8,6 +12,14 @@ import './index.sss';
         return {
             onUpdateUserName(value) {
                 dispatch(userActions.updateName(value));
+            },
+
+            onUpdateUserSurname(value) {
+                dispatch(userActions.updateSurname(value));
+            },
+
+            onUpdateUserSex(value) {
+                dispatch(userActions.updateSex(value));
             }
         };
     }
@@ -17,15 +29,33 @@ export default class PageEntry extends React.Component {
         this.props.onUpdateUserName(value);
     }
 
+    handleChangeSurname({target: {value}}) {
+        this.props.onUpdateUserSurname(value);
+    }
+
+    handleChangeSex({target: {value}}) {
+        this.props.onUpdateUserSex(value);
+    }
+
     render() {
-        let {name} = this.props.user;
+        let {user} = this.props;
 
         return (
-            <div>
-                <h2>Hello {name || 'Anonym'}</h2>
-                <form>
-                    <input value={name} onChange={this.handleChangeName.bind(this)} placeholder="Your name" />
-                </form>
+            <div className={b}>
+                <h2>Hello {user.name || 'Anonym'}</h2>
+                <div className={b('worksheet')}>
+                    <div className={b('form')}>
+                        <WorkSheetForm
+                            {...user}
+                            onChangeName={this.handleChangeName.bind(this)}
+                            onChangeSurname={this.handleChangeSurname.bind(this)}
+                            onChangeSex={this.handleChangeSex.bind(this)}
+                        />
+                    </div>
+                    <div className={b('preview')}>
+                        <WorkSheetTable {...user} />
+                    </div>
+                </div>
             </div>
         );
     }

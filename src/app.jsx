@@ -3,7 +3,7 @@ import store from 'store';
 import {Provider} from 'react-redux';
 import {Router, Route, browserHistory} from 'react-router';
 import PageEntry from 'components/page/entry';
-import './style.sss';
+import './style.styl';
 
 render(
     <Provider store={store}>
