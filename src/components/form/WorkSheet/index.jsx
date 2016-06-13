@@ -1,21 +1,27 @@
+const b = bem.default('form-work-sheet');
+
+import './index.styl';
+
 export default class FormWorkSheet extends React.Component {
     render() {
-        let {name, surname, sex, onChangeName, onChangeSurname, onChangeSex} = this.props;
+        let {name, surname, sex, onChangeName, onChangeSurname, onChangeSex} = this.props,
+            classNameLabel = b('label'),
+            classNameLabelTitle = b('label-title');
 
         return (
-            <form>
-                <label>
-                    <span>Name:</span>
+            <form className={b}>
+                <label className={classNameLabel}>
+                    <span className={classNameLabelTitle}>Name:</span>
                     <input value={name} onChange={onChangeName} />
                 </label>
 
-                <label>
-                    <span>Surname:</span>
+                <label className={classNameLabel}>
+                    <span className={classNameLabelTitle}>Surname:</span>
                     <input value={surname} onChange={onChangeSurname} />
                 </label>
 
-                <label>
-                    <span>Sex:</span>
+                <label className={classNameLabel}>
+                    <span className={classNameLabelTitle}>Sex:</span>
                     <select onChange={onChangeSex} defaultValue={sex}>
                         {['male', 'female'].map((item) => {
                             return (

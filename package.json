@@ -20,8 +20,8 @@
     "coverage": "NODE_PATH=$NODE_PATH:$PWD/src babel-node ./node_modules/.bin/isparta cover _mocha -- $(find src -name '*.test.js')"
   },
   "devDependencies": {
-    "autoprefixer": "^6.3.6",
-    "babel-cli": "6.9.0",
+    "autoprefixer": "6.3.6",
+    "babel-cli": "6.10.1",
     "babel-core": "6.9.1",
     "babel-eslint": "6.0.4",
     "babel-loader": "6.2.4",
@@ -43,9 +43,10 @@
     "ghooks": "1.2.3",
     "gulp": "3.9.1",
     "gulp-stylint": "3.0.0",
-    "html-webpack-plugin": "2.19.0",
+    "html-webpack-plugin": "2.21.0",
     "isparta": "4.0.0",
     "json-loader": "0.5.4",
+    "lodash": "^4.13.1",
     "mocha": "2.5.3",
     "postcss": "5.0.21",
     "poststylus": "^0.2.3",
