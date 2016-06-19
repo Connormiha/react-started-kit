@@ -1,4 +1,4 @@
-const b = bem.default('entry');
+const b = bem('entry');
 
 import WorkSheetForm from 'components/form/WorkSheet';
 import WorkSheetTable from 'components/common/WorkSheetTable';

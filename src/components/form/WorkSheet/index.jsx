@@ -1,4 +1,4 @@
-const b = bem.default('form-work-sheet');
+const b = bem('form-work-sheet');
 
 import './index.styl';
 

@@ -1,4 +1,4 @@
-const b = bem.default('work-sheet-table');
+const b = bem('work-sheet-table');
 
 import './index.styl';
 import capitalize from 'lodash/capitalize';
