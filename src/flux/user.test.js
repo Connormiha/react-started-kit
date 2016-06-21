@@ -1,12 +1,11 @@
 import * as Actions from './user';
 import {createAppStore} from 'store';
-
-const STORE_ID = 'user';
+import schema from 'reducers/schema';
 
 let store;
 
 const getState = () =>
-    store.getState()[STORE_ID];
+    store.getState().user;
 
 describe('User Store', () => {
     beforeEach(() => {
@@ -16,5 +15,9 @@ describe('User Store', () => {
     it('should update name', () => {
         store.dispatch(Actions.updateName('Alexey'));
         expect(getState().name).to.equal('Alexey');
+    });
+
+    it('should initial values', () => {
+        expect(getState()).to.deep.equal(schema.user);
     });
 });
