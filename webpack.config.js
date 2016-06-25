@@ -6,14 +6,14 @@ const autoprefixer = require('autoprefixer');
 const poststylus = require('poststylus');
 const NODE_ENV = process.env.NODE_ENV || 'development';
 const ExtractTextPlugin = require("extract-text-webpack-plugin");
+const WebpackNotifierPlugin = require('webpack-notifier');
 const path = require('path');
 const PARAMS = {};
 const nodePath = path.join(__dirname, './node_modules');
 const sourcePath = path.join(__dirname, './src/');
 
-function extractStyle(loaders) {
-    return ExtractTextPlugin.extract('style', loaders.substr(loaders.indexOf('!')));
-}
+const extractStyle(loaders) =>
+    ExtractTextPlugin.extract('style', loaders.substr(loaders.indexOf('!')));
 
 let cssLoaders = 'style!css?localIdentName=[hash:base64]';
 let stylusLoaders = `${cssLoaders}!stylus`;
@@ -106,7 +106,8 @@ module.exports = {
             'process.env': {
                 'NODE_ENV': JSON.stringify(NODE_ENV)
             }
-        })
+        }),
+        new WebpackNotifierPlugin()
     ],
     devServer: {
         host: 'localhost',
