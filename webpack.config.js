@@ -12,7 +12,7 @@ const PARAMS = {};
 const nodePath = path.join(__dirname, './node_modules');
 const sourcePath = path.join(__dirname, './src/');
 
-const extractStyle(loaders) =>
+const extractStyle = (loaders) =>
     ExtractTextPlugin.extract('style', loaders.substr(loaders.indexOf('!')));
 
 let cssLoaders = 'style!css?localIdentName=[hash:base64]';
